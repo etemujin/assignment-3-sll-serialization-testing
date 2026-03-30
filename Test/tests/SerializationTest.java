@@ -96,6 +96,6 @@ class SerializationTest {
 		
 		ios.close();
 		bais.close();
-		
+		// Final verification completed
 	}
 }

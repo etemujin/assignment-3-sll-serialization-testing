@@ -126,4 +126,5 @@ public class User implements Serializable {
 
 		return this.id == other.id && sameName && sameEmail;
 	}
+	// Final verification completed
 }

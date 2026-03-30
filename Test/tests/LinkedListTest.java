@@ -373,4 +373,88 @@ class LinkedListTest {
 		boolean contains = this.linkedList.contains("c");
 		assertEquals(true, contains);
 	}
+	@Test
+	void testInsertAtBeginning() {
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+
+		this.linkedList.insert("a", 0);
+
+		assertEquals(3, this.linkedList.size());
+		assertEquals("a", this.linkedList.retrieve(0));
+		assertEquals("b", this.linkedList.retrieve(1));
+		assertEquals("c", this.linkedList.retrieve(2));
+	}
+
+	@Test
+	void testInsertAtEnd() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+
+		this.linkedList.insert("c", 2);
+
+		assertEquals(3, this.linkedList.size());
+		assertEquals("a", this.linkedList.retrieve(0));
+		assertEquals("b", this.linkedList.retrieve(1));
+		assertEquals("c", this.linkedList.retrieve(2));
+	}
+
+	@Test
+	void testReplaceFirstNode() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+
+		this.linkedList.replace("z", 0);
+
+		assertEquals("z", this.linkedList.retrieve(0));
+		assertEquals("b", this.linkedList.retrieve(1));
+		assertEquals("c", this.linkedList.retrieve(2));
+	}
+
+	@Test
+	void testReplaceLastNode() {
+		this.linkedList.append("a");
+		this.linkedList.append("b");
+		this.linkedList.append("c");
+
+		this.linkedList.replace("z", 2);
+
+		assertEquals("a", this.linkedList.retrieve(0));
+		assertEquals("b", this.linkedList.retrieve(1));
+		assertEquals("z", this.linkedList.retrieve(2));
+	}
+
+	@Test
+	void testDeleteOnlyNode() {
+		this.linkedList.append("a");
+
+		this.linkedList.delete(0);
+
+		assertTrue(this.linkedList.isEmpty());
+		assertEquals(0, this.linkedList.size());
+	}
+
+	@Test
+	void testRetrieveInvalidIndex() {
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.retrieve(0);
+		});
+	}
+
+	@Test
+	void testDeleteInvalidIndex() {
+		this.linkedList.append("a");
+
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.delete(5);
+		});
+	}
+
+	@Test
+	void testInsertInvalidNegativeIndex() {
+		assertThrows(IndexOutOfBoundsException.class, () -> {
+			this.linkedList.insert("a", -1);
+		});
+	}
 }
